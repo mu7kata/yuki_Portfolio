@@ -5,17 +5,17 @@
 
 ## 環境
 　　<br>
- **▼言語** <br>
+　 **▼言語** <br>
  　 HTML、CSS（レスポンジブ未対応）、PHP 7.3.9、JavaScript、jQuery2.2.2  <br>
 　　<br>　
  **▼DBMS** <br>
- MySQL 5.7.26 <br>
+ 　MySQL 5.7.26 <br>
 　　<br>　
  ▼フレームワーク <br>
- なし <br>
+ 　なし <br>
 　　<br>　
  ▼開発環境 <br>
- MacOS Catalina 10.15.5 <br>
+　 MacOS Catalina 10.15.5 <br>
 　　<br>　
  ▼バージョン管理 <br>
 　Git 2.24.3 <br>
@@ -28,9 +28,9 @@
 ２９日　８５h <br>
 　<br>　
 ▼内訳 <br>
-DB設計、WF作成：8h <br>
-コーディング：53h <br>
-デプロイ ：23.5h　<br>
+　　DB設計、WF作成：8h <br>
+　　コーディング：53h <br>
+　　デプロイ ：23.5h　<br>
 
 ## 機能 <br>
 ・ユーザー登録 <br> 
