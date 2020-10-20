@@ -39,7 +39,7 @@ if (!empty($_POST)) {
       ':study_year' => date('Y'),
       ':study_month' => date('m'),
       ':study_date' => date('Y-m-d'),
-      ':create_date' => date('Y-m-d-H-i')
+      ':create_date' => date('Y-m-d-H-i',strtotime("+15 hour"))
     );
     $stmt = queryPost($dbh, $sql, $data);
 
