@@ -67,8 +67,8 @@ function dbConnect()
 {
   
   $dsn = 'mysql:dbname=heroku_2adfdebfa87fb7d;host=us-cdbr-east-02.cleardb.com;charset=utf8';
-  $user = 'ユーザー名';
-  $password = 'パス';
+  $user = 'bc453247f5348c';
+  $password = 'e4d50d3d';
   $option = array(
 
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
