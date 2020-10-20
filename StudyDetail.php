@@ -44,7 +44,7 @@ if (!empty($_GET['month_id'])) {
       <table>
         <thead>
           <tr>
-            <th class="size_s">日付</th>
+            <th class="size_sss">日付</th>
             <th class='size_m'>カテゴリ</th>
             <th class="size_s">時間(分)</th>
             <th class="size_l">内容</th>
@@ -54,7 +54,7 @@ if (!empty($_GET['month_id'])) {
           <?php foreach ($getstudy as $key => $val) { ?>
             <tr>
 
-              <td class="size_s"><?php echo $val['study_date']; ?></td>
+              <td class="size_ss"><?php echo substr($val['create_date'],0,16); ?></td>
               <td class='size_m'><?php echo $val['study_category']; ?></td>
               <td class="size_s"><?php echo $val['study_time']; ?></td>
               <td class="size_l"><?php if (!empty($getstudy)) {
@@ -224,7 +224,16 @@ if (!empty($_GET['month_id'])) {
     width: 80px;
     text-align: center;
   }
+  .size_ss{
+    width: 140px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .size_sss{
+    width: 140px;
+    text-align: center;
 
+  }
   .size_m {
     width: 130px;
   }
