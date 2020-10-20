@@ -76,7 +76,7 @@ if (!empty($_POST)) {
       <div class="form-container">
 
         <form action="" method="post" class="login-form">
-          <h2 class="title">ログイン</h2>
+          <h2 class="title">LOGIN</h2>
 
           <p>メールアドレス</p>
           <div class="err_msg"><?php if (!empty($err_msg['email'])) echo $err_msg['email']; ?></div>
