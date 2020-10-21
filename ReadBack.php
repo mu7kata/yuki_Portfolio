@@ -5,7 +5,7 @@ debug('「学習振り返りページ　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 $_SESSION['file'] =  basename(__FILE__);
-$u_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
 $serchyear = (!empty($_GET['year'])) ? $_GET['year'] : '';
 $serchyear2 = (!empty($_GET['year2'])) ? $_GET['year2'] : '';
@@ -15,7 +15,7 @@ $serchday = (!empty($_GET['day'])) ? $_GET['day'] : '';
 $serchday2 = (!empty($_GET['day2'])) ? $_GET['day2'] : '';
 $serchcategory = (!empty($_GET['category'])) ? $_GET['category'] : '';
 
-$user = getuser($u_id);
+$user = getuser($user_id);
 $startdate = date('Y-m-d', strtotime($user['create_date']));
 $start_month = date('m', strtotime($user['create_date']));
 $start_day = date('d', strtotime($user['create_date']));
@@ -40,12 +40,12 @@ if (!empty($_SESSION['get_month'])) {
   $to_date = 2020 . '-' . sprintf('%02d', $month) . '-' . 31;
   unset($_SESSION['get_month']);
 }
-$getstudy = getstudy($u_id, $from_date, $to_date, $includecategory);
+$getstudy = getstudy($user_id, $from_date, $to_date, $includecategory);
 debug('getsutdy' . print_r($getstudy, true));
 
 $getcategory = getcategory();
 
-$getstudytime = getstudytime($u_id, $from_date, $to_date, $includecategory);
+$getstudytime = getstudytime($user_id, $from_date, $to_date, $includecategory);
 debug('getsutdytime' . print_r($getstudytime, true));
 $edit_study = (!empty($_GET['study_id'])) ? $_GET['study_id'] : 'データなし';
 if (!empty($_GET['study_id'])) {

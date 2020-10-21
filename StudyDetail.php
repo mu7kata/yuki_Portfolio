@@ -3,16 +3,16 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「「�
 debug('「学習振り返りページ　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 
-$getagtstudy = getagtstudy($u_id);
+$getagtstudy = getagtstudy($user_id);
 debug('$getagtstudy:' . print_r($getagtstudy, true));
-$user = getuser($u_id);
+$user = getuser($user_id);
 
 
 $includecategory = '';
 $startdate = date('Y-m-d', strtotime($user['create_date']));
 $start_month = date('m', strtotime($user['create_date']));
 
-$getstudytime = getstudytime($u_id, $startdate, date('Y-m-d'), $includecategory);
+$getstudytime = getstudytime($user_id, $startdate, date('Y-m-d'), $includecategory);
 $sutdy_period = ((strtotime(date('Y-m-d')) - strtotime($startdate)) / 86400);
 $sutdy_startlastday = 2020 . '-' . sprintf('%02d', $start_month) . '-' . 31;
 $sutdy_startfirstmonthdays = ((strtotime($sutdy_startlastday) - strtotime($startdate)) / 86400);
@@ -22,9 +22,9 @@ debug(' $startdate' . print_r($startdate, true));
 debug(' $sutdy_startlastday' . print_r($sutdy_startlastday, true));
 
 
-$getstudy = getstudy($u_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
+$getstudy = getstudy($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
 
-$gettime1 = getstudytime($u_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
+$gettime1 = getstudytime($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
 $gettime2 = array_shift($gettime1);
 $todaystudytime = round($gettime2 / 60, 1);
 if (!empty($_GET['month_id'])) {
@@ -54,7 +54,7 @@ if (!empty($_GET['month_id'])) {
           <?php foreach ($getstudy as $key => $val) { ?>
             <tr>
 
-              <td class="size_ss"><?php echo substr($val['create_date'],0,16); ?></td>
+              <td class="size_ss"><?php echo substr($val['create_date'], 0, 16); ?></td>
               <td class='size_m'><?php echo $val['study_category']; ?></td>
               <td class="size_s"><?php echo $val['study_time']; ?></td>
               <td class="size_l"><?php if (!empty($getstudy)) {
@@ -224,16 +224,19 @@ if (!empty($_GET['month_id'])) {
     width: 80px;
     text-align: center;
   }
-  .size_ss{
+
+  .size_ss {
     width: 140px;
     text-align: center;
     font-size: 14px;
   }
-  .size_sss{
+
+  .size_sss {
     width: 140px;
     text-align: center;
 
   }
+
   .size_m {
     width: 130px;
   }
