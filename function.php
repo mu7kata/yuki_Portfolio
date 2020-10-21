@@ -65,7 +65,7 @@ function vaildEmail($str, $key)
 }
 function dbConnect()
 {
-  
+
   $dsn = 'mysql:dbname=heroku_2adfdebfa87fb7d;host=us-cdbr-east-02.cleardb.com;charset=utf8';
   $user = 'bc453247f5348c';
   $password = 'e4d50d3d';
@@ -168,13 +168,13 @@ function queryPost($dbh, $sql, $data)
   debug('クエリ成功');
   return $stmt;
 }
-function getuser($u_id)
+function getuser($user_id)
 {
   debug('ユーザー情報を取得します。');
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT * FROM users WHERE id = :u_id AND delete_flg=0';
-    $data = array(':u_id' => $u_id);
+    $sql = 'SELECT * FROM users WHERE id = :user_id AND delete_flg=0';
+    $data = array(':user_id' => $user_id);
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
@@ -187,15 +187,15 @@ function getuser($u_id)
   }
 }
 
-function getusername($u_id)
+function getusername($user_id)
 {
   debug('ユーザー名を取得します。');
   global $err_msg;
 
   try {
     $dbh  = dbConnect();
-    $sql = 'SELECT user_name FROM users WHERE id = :u_id AND delete_flg = 0';
-    $data = array(':u_id' => $u_id);
+    $sql = 'SELECT user_name FROM users WHERE id = :user_id AND delete_flg = 0';
+    $data = array(':user_id' => $user_id);
     $stmt = queryPost($dbh, $sql, $data);
 
 
@@ -226,69 +226,67 @@ function getcategory()
     error_log('エラー発生:' . $e->getMessage());
   }
 }
- 
 
-function getstudy($u_id,$from_date,$to_date,$includecategory)
+
+function getstudy($user_id, $from_date, $to_date, $includecategory)
 {
   debug('学習内容の取得');
-  $from_date = date('Y-m-d',strtotime($from_date));
-  $to_date = date('Y-m-d',strtotime($to_date));
+  $from_date = date('Y-m-d', strtotime($from_date));
+  $to_date = date('Y-m-d', strtotime($to_date));
 
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT * FROM study_detail WHERE user_id = :u_id  AND study_date  BETWEEN :from_date and :to_date';
-    
-    if(!empty($includecategory)) $sql .= ' AND study_category  = '.$includecategory ;
-    $data = array(':u_id' => $u_id,':from_date' => $from_date,':to_date' => $to_date);
-  
+    $sql = 'SELECT * FROM study_detail WHERE user_id = :user_id  AND study_date  BETWEEN :from_date and :to_date';
 
-   
+    if (!empty($includecategory)) $sql .= ' AND study_category  = ' . $includecategory;
+    $data = array(':user_id' => $user_id, ':from_date' => $from_date, ':to_date' => $to_date);
+
+
+
     $stmt = queryPost($dbh, $sql, $data);
- 
-if($stmt){
-  debug('成功');
-  return $stmt->fetchAll();
-}else{
-  return false;
+
+    if ($stmt) {
+      debug('成功');
+      return $stmt->fetchAll();
+    } else {
+      return false;
+    }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
 }
 
-} catch (Exception $e) {
-error_log('エラー発生:' . $e->getMessage());
-}
-}
-
-function geteditstudy($u_id,$study_id)
+function geteditstudy($user_id, $study_id)
 {
   debug('編集する学習内容の取得');
 
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT * FROM study_detail WHERE user_id = :u_id  AND id=:study_id' ;
-    
-    $data = array(':u_id' => $u_id,':study_id' => $study_id);
+    $sql = 'SELECT * FROM study_detail WHERE user_id = :user_id  AND id=:study_id';
+
+    $data = array(':user_id' => $user_id, ':study_id' => $study_id);
     $stmt = queryPost($dbh, $sql, $data);
- 
-if($stmt){
-  debug('成功');
-  return $stmt->fetch();
-}else{
-  return false;
+
+    if ($stmt) {
+      debug('成功');
+      return $stmt->fetch();
+    } else {
+      return false;
+    }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
 }
 
-} catch (Exception $e) {
-error_log('エラー発生:' . $e->getMessage());
-}
-}
-
-function getstudytime($u_id,$from_date,$to_date,$includecategory)
+function getstudytime($user_id, $from_date, $to_date, $includecategory)
 {
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT sum(study_time) FROM study_detail WHERE user_id = :u_id  AND study_date  BETWEEN :from_date and :to_date';
-    
-    if(!empty($includecategory)) $sql .= ' AND study_category  = '.$includecategory ;
-    $data = array(':u_id' => $u_id,':from_date' => $from_date,':to_date' => $to_date);
-    
+    $sql = 'SELECT sum(study_time) FROM study_detail WHERE user_id = :user_id  AND study_date  BETWEEN :from_date and :to_date';
+
+    if (!empty($includecategory)) $sql .= ' AND study_category  = ' . $includecategory;
+    $data = array(':user_id' => $user_id, ':from_date' => $from_date, ':to_date' => $to_date);
+
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
@@ -302,41 +300,39 @@ function getstudytime($u_id,$from_date,$to_date,$includecategory)
   }
 }
 
-function getagtstudy($u_id)
+function getagtstudy($user_id)
 {
   debug('月毎の学習時間の取得');
- 
+
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT study_month , sum(study_time)as sum_time  , round(AVG(study_time),1)as avg_time  FROM study_detail WHERE user_id = :u_id  GROUP BY study_month desc';
-    
-    
-    $data = array(':u_id' => $u_id);
+    $sql = 'SELECT study_month , sum(study_time)as sum_time  , round(AVG(study_time),1)as avg_time  FROM study_detail WHERE user_id = :user_id  GROUP BY study_month desc';
+
+
+    $data = array(':user_id' => $user_id);
     $stmt = queryPost($dbh, $sql, $data);
- 
-if($stmt){
-  debug('成功');
-  return $stmt->fetchall();
-}else{
-  return false;
-}
 
-} catch (Exception $e) {
-error_log('エラー発生:' . $e->getMessage());
-}
-}
-
-function getSessionFlash($keyword){
-  debug('flashスタート：'.print_r($keyword,true));
-  debug('セッション変数の：' . print_r($_SESSION, true));
-  if(!empty($_SESSION[$keyword])){
-    debug('flashスタート：'.print_r($keyword,true));
-    $flash = $_SESSION[$keyword];
-    debug('$flash'.print_r($flash,true));
-    $_SESSION[$keyword] = '';
-    debug('$flash2'.print_r($flash,true));
-    return $flash;
-   
+    if ($stmt) {
+      debug('成功');
+      return $stmt->fetchall();
+    } else {
+      return false;
+    }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
   }
 }
 
+function getSessionFlash($keyword)
+{
+  debug('flashスタート：' . print_r($keyword, true));
+  debug('セッション変数の：' . print_r($_SESSION, true));
+  if (!empty($_SESSION[$keyword])) {
+    debug('flashスタート：' . print_r($keyword, true));
+    $flash = $_SESSION[$keyword];
+    debug('$flash' . print_r($flash, true));
+    $_SESSION[$keyword] = '';
+    debug('$flash2' . print_r($flash, true));
+    return $flash;
+  }
+}

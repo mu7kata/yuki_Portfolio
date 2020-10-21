@@ -5,15 +5,15 @@ debug('カテゴリ新規作成ページ');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 $getcategory = getcategory();
-$u_id = $_SESSION['user_id'];
-$new_category =$_POST['new_category'];
+$user_id = $_SESSION['user_id'];
+$new_category = $_POST['new_category'];
 
 if (!empty($new_category)) {
   debug('カテゴリを新規登録します');
   try {
     $dbh = dbConnect();
-    $sql = 'INSERT INTO category(user_id,category_name,createdate) VALUES(:u_id,:new_category,:createdate)';
-    $data = array('u_id' => $u_id,':new_category' => $new_category,':createdate' => date('Y-m-d-H-i'));
+    $sql = 'INSERT INTO category(user_id,category_name,createdate) VALUES(:user_id,:new_category,:createdate)';
+    $data = array('user_id' => $user_id, ':new_category' => $new_category, ':createdate' => date('Y-m-d-H-i'));
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
@@ -22,7 +22,6 @@ if (!empty($new_category)) {
       debug('カテゴリ編集ページへ遷移します。');
       session_write_close();
       header("Location:FillOut.php");
-  
     } else {
       return false;
     }
@@ -51,34 +50,35 @@ if (!empty($new_category)) {
   <main>
 
     <div class="site-width2">
-    
-          <section class="category">
+
+      <section class="category">
         <div class="page-title">
           <h1 class="page-title">カテゴリを新規作成</h1>
         </div>
         <form method="post">
-            <div class="selectbox">
-      <p>新しいカテゴリ名を記入してください</p>
+          <div class="selectbox">
+            <p>新しいカテゴリ名を記入してください</p>
             <input type="text" name="new_category" placeholder="カテゴリ名を記入">
-   
-              </select>
-            </div>
-          </section>
 
-          <div class='btn-container'>
-            <input type="submit" value="新規登録">
+            </select>
           </div>
-        </form>
-     
+      </section>
+
+      <div class='btn-container'>
+        <input type="submit" value="新規登録">
+      </div>
+      </form>
+
     </div>
 
     <a class="i_jump" href="FillOut.php">記録ページへ戻る</a>
   </main>
 </body>
 <style>
-input ::placeholder{
-  color: #FF773E;
-}
+  input ::placeholder {
+    color: #FF773E;
+  }
+
   main {
     background-color: #ddd;
     height: 900px;
@@ -118,7 +118,7 @@ input ::placeholder{
   }
 
   input[type="submit"] {
-    
+
     padding: 15px 30px;
     width: 150px;
     border: none;
@@ -126,9 +126,9 @@ input ::placeholder{
     color: white;
     font-size: 14px;
     cursor: pointer;
-    display:block;
+    display: block;
     margin: 0 auto;
-       
+
   }
 
   input[type="text"],

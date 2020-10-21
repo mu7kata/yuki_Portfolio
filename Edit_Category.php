@@ -7,7 +7,7 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「「�
 debugLogStart();
 $getcategory = getcategory();
 
-$u_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 $postcateogry = (!empty($_POST['category-list'])) ? $_POST['category-list'] : '';
 debug('編集したいカテゴリ:' . $postcateogry);
 (!empty($_POST['time-list'])) ? $_POST['time-list'] : '';
@@ -26,8 +26,8 @@ if (!empty($postrecateogry)) {
   debug('カテゴリ名を変更します');
   try {
     $dbh = dbConnect();
-    $sql = 'UPDATE category set category_name= :recateogry WHERE user_id= :u_id and category_name=:category_name ';
-    $data = array(':recateogry' => $postrecateogry, 'u_id' => $u_id, ':category_name' => $recategorylist);
+    $sql = 'UPDATE category set category_name= :recateogry WHERE user_id= :user_id and category_name=:category_name ';
+    $data = array(':recateogry' => $postrecateogry, 'user_id' => $user_id, ':category_name' => $recategorylist);
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
@@ -65,7 +65,7 @@ if (!empty($postrecateogry)) {
     <div class="site-width2">
       <?php if (empty($_SESSION['category'])) { ?>
         <div class="page-title">
-          <h1 class="page-title"><img class ='icon' src="img/setting.png" alt="">カテゴリを編集する</h1>
+          <h1 class="page-title"><img class='icon' src="img/setting.png" alt="">カテゴリを編集する</h1>
         </div>
         <form method="post">
           <section class="category">
@@ -78,7 +78,7 @@ if (!empty($postrecateogry)) {
                 foreach ($getcategory as $key => $val) {
                 ?>
                   <option value="<?php echo $val['category_name'] ?>"><?php echo $val['category_name'] ?></option><?php  } ?>
-                
+
               </select>
             </div>
           </section>
@@ -112,7 +112,7 @@ if (!empty($postrecateogry)) {
             <p>2.変更後のカテゴリ</p>
             <input type="text" name="rename_category">
           </section>
-            <div class='btn-container'>
+          <div class='btn-container'>
             <input type="submit" value="再登録">
           </div>
         </form>
@@ -160,7 +160,7 @@ if (!empty($postrecateogry)) {
     font-size: 24px;
     display: block;
     margin-bottom: 30px;
-    border-bottom:2px solid ;
+    border-bottom: 2px solid;
     letter-spacing: 3px;
   }
 
@@ -173,7 +173,7 @@ if (!empty($postrecateogry)) {
     color: white;
     font-size: 14px;
     cursor: pointer;
-    
+
   }
 
   input[type="text"],
@@ -208,7 +208,8 @@ if (!empty($postrecateogry)) {
     color: #333;
 
   }
-  .category p{
-font-size: 18px;
+
+  .category p {
+    font-size: 18px;
   }
 </style>

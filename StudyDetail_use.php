@@ -3,15 +3,15 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「「�
 debug('「学習振り返りページ　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 
-$getagtstudy = getagtstudy($u_id);
-$user = getuser($u_id);
+$getagtstudy = getagtstudy($user_id);
+$user = getuser($user_id);
 
 $includecategory = '';
 $startdate = date('Y-m-d', strtotime($user['create_date']));
-$getstudytime = getstudytime($u_id, $startdate, date('Y-m-d'), $includecategory);
+$getstudytime = getstudytime($user_id, $startdate, date('Y-m-d'), $includecategory);
 $sutdy_period = ((strtotime(date('Y-m-d')) - strtotime($startdate)) / 86400);
-$getstudy = getstudy($u_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
-$gettime1 = getstudytime($u_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
+$getstudy = getstudy($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
+$gettime1 = getstudytime($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
 $gettime2 = array_shift($gettime1);
 $todaystudytime = round($gettime2 / 60, 1);
 ?>
@@ -137,6 +137,7 @@ $todaystudytime = round($gettime2 / 60, 1);
     width: 80px;
     text-align: center;
   }
+
   .size_m {
     width: 130px;
   }

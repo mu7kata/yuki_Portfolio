@@ -5,7 +5,7 @@ debug('「マイページ　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 $_SESSION['file'] =  basename(__FILE__);
-$u_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
 if (!empty($_POST['memo'])) {
   $_SESSION['memo'] = $_POST['memo'];

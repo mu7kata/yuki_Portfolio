@@ -1,7 +1,7 @@
 <?php
 
 if (!empty($_SESSION['user_id'])) {
-  $u_id = $_SESSION['user_id'];
+  $user_id = $_SESSION['user_id'];
 }
 require('auth.php');
 $edit_study = (!empty($_GET['study_id'])) ? $_GET['study_id'] : 'データなし';
@@ -11,9 +11,9 @@ if (!empty($_GET['study_id'])) {
 }
 ?>
 <style>
-a{
-text-decoration: none;
-color: #333;
+  a {
+    text-decoration: none;
+    color: #333;
   }
 
   img {
@@ -102,7 +102,7 @@ color: #333;
     color: #fff;
     margin: 0;
   }
-  
+
 
   .msg-slide {
     position: absolute;
@@ -118,28 +118,33 @@ color: #333;
     color: #fff;
     margin-top: 20px;
   }
-  .icon{
+
+  .icon {
     height: 30px;
     width: 30px;
     margin-top: 7px;
   }
-  #last{
+
+  #last {
     border-right: 1px solid #ddd;
   }
-  .main_icon{
-width: 30px;
-height: 30px;
-margin-right: 7px;
-float: left;
-margin-left: 30px;
-margin-top: 9px;
+
+  .main_icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 7px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 9px;
   }
 </style>
 <header>
   <div>
     <div class="first_header">
 
-      <a href="TopPage.php">  <img class ='main_icon' src="img/mainicon.png" alt=""> <h1> 学習日誌くん</h1></a>
+      <a href="TopPage.php"> <img class='main_icon' src="img/mainicon.png" alt="">
+        <h1> 学習日誌くん</h1>
+      </a>
     </div>
     <div class="second_header">
       <nav class="top-nav">
@@ -158,7 +163,7 @@ margin-top: 9px;
                     } else {
                       echo 'contents';
                     } ?>">
-            <img class ='icon' src="img/pen.png" alt="">
+          <img class='icon' src="img/pen.png" alt="">
           <a href="FillOut.php">
             <p>学習を記録する</p>
           </a>
@@ -168,17 +173,17 @@ margin-top: 9px;
                     } else {
                       echo 'contents';
                     } ?>">
-                    <img class ='icon' src="img/book.png" alt="">
+          <img class='icon' src="img/book.png" alt="">
           <a href="ReadBack.php">
             <p>学習を振り返る</p>
           </a>
         </div>
-        <div id ='last' class="<?php if ($_SESSION['file'] === 'setting.php') {
-                      echo 'contentsmark';
-                    } else {
-                      echo 'contents';
-                    } ?>">
-                    <img class ='icon' src="img/setting.png" alt="">
+        <div id='last' class="<?php if ($_SESSION['file'] === 'setting.php') {
+                                echo 'contentsmark';
+                              } else {
+                                echo 'contents';
+                              } ?>">
+          <img class='icon' src="img/setting.png" alt="">
           <a href="setting.php">
             <p>その他設定</p>
           </a>
@@ -190,7 +195,7 @@ margin-top: 9px;
   <ul class="stauts">
     <li class="stauts-user">
       <span><img src="img/user_icon.jpeg" alt=""></span>
-      <p><?php echo getusername($u_id); ?></p>
+      <p><?php echo getusername($user_id); ?></p>
     </li>
     <li class="logout">
       <a href="logout.php">ログアウト</a>

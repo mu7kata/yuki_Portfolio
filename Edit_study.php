@@ -6,14 +6,14 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「「�
 debugLogStart();
 $getcategory = getcategory();
 $study_id = $_SESSION['Edit_study_id'];
-$u_id = $_SESSION['user_id'];
-$geteditstudy = geteditstudy($u_id, $study_id);
-debug('編集する学習内容'.print_r($geteditstudy,true));
-debug('POSTの中身：'.print_r($_POST,true));
+$user_id = $_SESSION['user_id'];
+$geteditstudy = geteditstudy($user_id, $study_id);
+debug('編集する学習内容' . print_r($geteditstudy, true));
+debug('POSTの中身：' . print_r($_POST, true));
 $study_time = (!empty($_POST['time-list'])) ? $_POST['time-list'] : '';
-$study_month = (!empty($_POST['month'])) ? sprintf('%02d',$_POST['month']) : '';
+$study_month = (!empty($_POST['month'])) ? sprintf('%02d', $_POST['month']) : '';
 $study_year = (!empty($_POST['year'])) ? $_POST['year'] : '';
-$study_date = (!empty($_POST['day'])) ? $study_year.'-'.$study_month.'-'.$_POST['day']: '';
+$study_date = (!empty($_POST['day'])) ? $study_year . '-' . $study_month . '-' . $_POST['day'] : '';
 $study_category = (!empty($_POST['category-list'])) ? $_POST['category-list'] : '';
 $study_detail = (!empty($_POST['study-detail'])) ? $_POST['study-detail'] : '';
 
@@ -41,7 +41,7 @@ if (!empty($_POST)) {
       ':study_date' => $study_date,
       ':update_date' => date('Y-m-d-H-i'), ':study_id' => $study_id
     );
-    debug('変更予定の中身：'.print_r($data,true));
+    debug('変更予定の中身：' . print_r($data, true));
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
@@ -78,7 +78,7 @@ if (!empty($_POST)) {
 
     <div class="site-width2">
       <div class="page-title">
-        <h1 class="page-title"><img class ='icon' src="img/book.png" alt="">学習履歴を編集する</h1>
+        <h1 class="page-title"><img class='icon' src="img/book.png" alt="">学習履歴を編集する</h1>
       </div>
       <form action="" method="post">
         <section class="date">
@@ -191,9 +191,9 @@ if (!empty($_POST)) {
     margin: 10px 1px;
   }
 
-  
-  .detail p{
-   margin: 0;
+
+  .detail p {
+    margin: 0;
   }
 
   select {
@@ -222,10 +222,10 @@ if (!empty($_POST)) {
     color: white;
     font-size: 14px;
     cursor: pointer;
- 
+
 
   }
- 
+
   .page-title {
     margin-bottom: 50px;
 
