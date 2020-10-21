@@ -22,6 +22,7 @@ if (!empty($new_category)) {
       debug('カテゴリ編集ページへ遷移します。');
       session_write_close();
       header("Location:FillOut.php");
+      exit();
     } else {
       return false;
     }

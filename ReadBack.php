@@ -50,6 +50,7 @@ debug('getsutdytime' . print_r($getstudytime, true));
 $edit_study = (!empty($_GET['study_id'])) ? $_GET['study_id'] : 'データなし';
 if (!empty($_GET['study_id'])) {
   header('Location:Edit_study.php');
+  exit();
   $_SESSION['Edit_study_id'] = $edit_study;
 }
 
