@@ -49,6 +49,7 @@ if (!empty($_POST)) {
       debug('マイページへ遷移します。');
       session_write_close();
       header("Location:index.php");
+      exit();
     } else {
       return false;
     }

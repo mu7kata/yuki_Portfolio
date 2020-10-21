@@ -37,6 +37,7 @@ if (!empty($_POST)) {
         debug('セッション変数の中身：' . print_r($_SESSION, true));
         debug('マイページへ遷移します。');
         header("Location:index.php");
+        exit();
       } else {
         debug('パスワードが間違っています');
         $err_msg['common'] = MSG10;

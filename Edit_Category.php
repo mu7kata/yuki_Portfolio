@@ -19,6 +19,7 @@ debug('変更後のカテゴリ:' . $postrecateogry);
 if ($postcateogry === 'new') {
   debug('カテゴリ作成ページへ遷移します。');
   header("Location:new_category.php");
+  exit();
 } else {
   $_SESSION['category'] = $postcateogry;
 }
@@ -35,6 +36,7 @@ if (!empty($postrecateogry)) {
       debug('カテゴリ編集ページへ遷移します。');
       session_write_close();
       header("Location:FillOut.php");
+      exit();
     } else {
       return false;
     }

@@ -30,6 +30,7 @@ $todaystudytime = round($gettime2 / 60, 1);
 if (!empty($_GET['month_id'])) {
   $_SESSION['get_month'] = $_GET['month_id'];
   header('location:ReadBack.php');
+  exit();
 }
 ?>
 <div class="study_detail">

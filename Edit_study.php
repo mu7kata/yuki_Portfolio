@@ -49,6 +49,7 @@ if (!empty($_POST)) {
       debug('学習内容を変更しました。');
       session_write_close();
       header('location:ReadBack.php');
+      exit();
     } else {
       return false;
     }

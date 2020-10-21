@@ -45,6 +45,7 @@ if(!empty($_POST)){
       $_SESSION['user_id'] = $dbh->lastInsertId();
       debug('セッション変数の中身：'.print_r($_SESSION,true));
       header("Location:index.php"); 
+      exit();
     }
     }catch (Exception $e) {
       error_log('エラー発生:' . $e->getMessage());
