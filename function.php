@@ -66,10 +66,12 @@ function vaildEmail($str, $key)
 function dbConnect()
 {
 
-  $dsn = 'mysql:dbname=heroku_2adfdebfa87fb7d;host=us-cdbr-east-02.cleardb.com;charset=utf8';
-  $user = 'bc453247f5348c';
-  $password = 'e4d50d3d';
+  $dsn = 'mysql:dbname=heroku_4e17269070abffd;host=us-cdbr-east-02.cleardb.com;charset=utf8';
+  $user = 'b2cfd88da643c1';
+  $password = '71005a34';
   $option = array(
+
+   
 
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
