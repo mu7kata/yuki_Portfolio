@@ -6,9 +6,14 @@ if (!empty($_SESSION['user_id'])) {
 require('auth.php');
 $edit_study = (!empty($_GET['study_id'])) ? $_GET['study_id'] : 'データなし';
 if (!empty($_GET['study_id'])) {
+  $_SESSION['Edit_study_id'] = $edit_study;
   header('Location:Edit_study.php');
   exit();
-  $_SESSION['Edit_study_id'] = $edit_study;
+}
+if (!empty($_GET['month_id'])) {
+  $_SESSION['get_month'] = $_GET['month_id'];
+  header('location:ReadBack.php');
+  exit();
 }
 ?>
 <style>
