@@ -71,8 +71,6 @@ function dbConnect()
   $password = '71005a34';
   $option = array(
 
-   
-
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
@@ -238,13 +236,15 @@ function getstudy($user_id, $from_date, $to_date, $includecategory)
 
   try {
     $dbh = dbConnect();
-    $sql = 'SELECT * FROM study_detail WHERE user_id = :user_id  AND study_date  BETWEEN :from_date and :to_date';
+    $sql = 'SELECT * FROM study_detail WHERE user_id = :user_id  AND study_date  BETWEEN :from_date and :to_date ';
 
-    if (!empty($includecategory)) $sql .= ' AND study_category  = ' . $includecategory;
+    if(!empty($includecategory)){
+      $sql .= ' AND study_category  = ' . $includecategory . 'ORDER BY study_date DESC' ;
+    }else {
+      $sql .= 'ORDER BY study_date DESC' ;
+    }
+
     $data = array(':user_id' => $user_id, ':from_date' => $from_date, ':to_date' => $to_date);
-
-
-
     $stmt = queryPost($dbh, $sql, $data);
 
     if ($stmt) {
