@@ -98,22 +98,18 @@ if (!empty($_POST)) {
             <select class="month-list" name="month">
 
               <?php for ($i = 1; $i <= 12; $i++) { ?>
-                <option value="<?php echo $i; ?>" <?php if ($i === (int)date('n')) {
-                                                    echo 'selected';
-                                                  } ?>>
-                  <?php echo $i . '月'; ?></option><?php } ?>
-              <?php if (!empty($geteditstudy['$study_month'])) { ?>
-                <option value="<?php echo $geteditstudy['$study_month'] ?>" <?php if ($i == $geteditstudy['$study_month']) {
-                                                                              echo 'selected';
-                                                                            } ?>>
-                  <?php echo $geteditstudy['$study_month'] ?></option>
-              <?php } ?>
+                <option value="<?php echo $i; ?>"
+                <?php if ($i == $geteditstudy['study_month']) {
+                  echo 'selected' ;} ?> >
+                  <?php echo $i . '月'; ?>
+                  </option><?php } ?>
+            
             </select>
             <select class="day-list" name="day" id="">
               <?php for ($i = 1; $i <= 31; $i++) { ?>
-                <option value="<?php echo $i; ?>" <?php if ($i == substr($geteditstudy['study_date'], -2)) {
-                                                    echo 'selected';
-                                                  } ?>>
+                <option value="<?php echo $i; ?>" 
+                <?php if ($i == substr($geteditstudy['study_date'], -2)) {
+                echo 'selected';} ?>>
                   <?php echo $i . '日'; ?>
                 </option>
               <?php } ?>
