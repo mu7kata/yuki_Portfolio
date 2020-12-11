@@ -41,7 +41,6 @@ if (!empty($_SESSION['get_month'])) {
   unset($_SESSION['get_month']);
 }
 $getstudy = getstudy($user_id, $from_date, $to_date, $includecategory);
-debug('getsutdy' . print_r($getstudy, true));
 
 $getcategory = getcategory();
 
@@ -49,9 +48,9 @@ $getstudytime = getstudytime($user_id, $from_date, $to_date, $includecategory);
 debug('getsutdytime' . print_r($getstudytime, true));
 $edit_study = (!empty($_GET['study_id'])) ? $_GET['study_id'] : 'データなし';
 if (!empty($_GET['study_id'])) {
+  $_SESSION['Edit_study_id'] = $edit_study;
   header('Location:Edit_study.php');
   exit();
-  $_SESSION['Edit_study_id'] = $edit_study;
 }
 
 ?>
