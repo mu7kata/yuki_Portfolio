@@ -15,19 +15,16 @@ $memo = $_SESSION['memo'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ホーム</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
   <?php
   require('header.php');
   require('auth.php');
-
   ?>
   <main>
     <div class="site-width2">
@@ -35,7 +32,6 @@ $memo = $_SESSION['memo'];
         <div class="contents1">
           <a href="FillOut.php">
             <p><img class='icon' src="img/pen.png" alt="">学習を記録する </p>
-
           </a>
         </div>
         <div class="contents2">
@@ -51,14 +47,12 @@ $memo = $_SESSION['memo'];
             <textarea name="memo" id="" cols="50" rows="12"><?php echo $memo; ?></textarea>
             <input type="submit" name="save" id="" value="メモを保存">
           </form>
-
         </div>
       </section>
     </div>
     <?php
     require('StudyDetail.php');
     ?>
-
   </main>
   <?php require('footer.php'); ?>
 </body>

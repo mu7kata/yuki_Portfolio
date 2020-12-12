@@ -16,22 +16,12 @@ $getstudytime = getstudytime($user_id, $startdate, date('Y-m-d'), $includecatego
 $sutdy_period = ((strtotime(date('Y-m-d')) - strtotime($startdate)) / 86400);
 $sutdy_startlastday = 2020 . '-' . sprintf('%02d', $start_month) . '-' . 31;
 $sutdy_startfirstmonthdays = ((strtotime($sutdy_startlastday) - strtotime($startdate)) / 86400);
-
-
 debug(' $startdate' . print_r($startdate, true));
 debug(' $sutdy_startlastday' . print_r($sutdy_startlastday, true));
-
-
 $getstudy = getstudy($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
-
 $gettime1 = getstudytime($user_id, date('Y-m-d'), date('Y-m-d'), $includecategory);
 $gettime2 = array_shift($gettime1);
 $todaystudytime = round($gettime2 / 60, 1);
-if (!empty($_GET['month_id'])) {
-  $_SESSION['get_month'] = $_GET['month_id'];
-  header('location:ReadBack.php');
-  exit();
-}
 ?>
 <div class="study_detail">
   <div class="site-width">
@@ -99,10 +89,9 @@ if (!empty($_GET['month_id'])) {
                     <input class='month-btn' type="submit" value="詳細 ">>
                   </form>
                 </h1>
-
                 <p class="study-time">合計時間：<span class="sum"> <?php echo round(($val['sum_time'] / 60), 1); ?></span>h </p>
-                <p class="study-time">1日平均：<span class="sum"><?php echo round(($val['sum_time'] / 60) / $study_days, 1);
-                                                              ?></span>h</p>
+                <p class="study-time">1日平均：<span class="sum"><?php echo round(($val['sum_time'] / 60) / $study_days, 1);?>
+                </span>h</p>
               </div>
             </li>
           <?php } ?>
