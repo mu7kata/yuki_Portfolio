@@ -45,7 +45,6 @@ define('MSG12', 'カテゴリを編集しました');
 define('MSG13', '学習内容を変更しました');
 define('MSG_TYPO_TEST', 'これはtypo用のmesssageです');
 
-//テストテストテスト　テストテストテスト
 
 $err_msg = array();
 
