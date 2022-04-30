@@ -31,7 +31,7 @@ function debugLogStart()
 }
 
 define('MSG01', '入力必須です');
-define('MSG02', 'emailの形式で入力してください');
+define('MSG02', 'enailの形式で入力してください');
 define('MSG03', 'パスワード（再入力）が合っていません');
 define('MSG04', '6文字以上で入力してください');
 define('MSG05', '256文字以内で入力してください');
