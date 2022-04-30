@@ -43,6 +43,7 @@ define('MSG10', 'パスワードが間違っています');
 define('MSG11', '記録が完了しました');
 define('MSG12', 'カテゴリを編集しました');
 define('MSG13', '学習内容を変更しました');
+define('MSG_TYPO_TEST', 'これはtypo用のmesssageです');
 
 //テストテストテスト　テストテストテスト
 
